@@ -1,4 +1,26 @@
 <script setup>
+import jsonData from './assets/data/data.json';
+
+export default {
+  data() {
+    return {
+      cards: jsonData,
+      currentIndex: 0
+    };
+  },
+  methods: {
+    prevCard() {
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+      }
+    },
+    nextCard() {
+      if (this.currentIndex < this.cards.length - 1) {
+        this.currentIndex++;
+      }
+    }
+  }
+};
 </script>
 
 <template>
@@ -60,7 +82,7 @@
        </div>
      </div>
    </section>
-     <div class="bg-dark row lenta">
+     <div class="bg-dar k row lenta">
 
          <img class="lenta_img1 col-sm-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3" src="./assets/logo1.png" alt="Logo">
 
@@ -144,6 +166,42 @@ margin-top: 160px;
 
        </div>
      </section>
+     <section class="section_5">
+       <div class="row">
+         <div class="co-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 section5_card1">
+           <p class="section_5p">Shop Boosted Stealth</p>
+           <a class="section_5link" href="">IN STOCK</a>
+         </div>
+         <div class="co-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 section5_card2">
+           <p class="section_5p">Shop Boosted Plus</p>
+           <a class="section_5link" href="">IN STOCK</a>
+         </div>
+         <div class="co-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-4 section5_card3">
+           <p class="section_5p">Shop Boosted Mini</p>
+           <a class="section_5link" href="">IN STOCK</a>
+         </div>
+
+       </div>
+     </section>
+     <section class="section_6">
+       <div class="row">
+           <img class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 col_youtube_img_card1" src="./assets/youtube_video1.png" alt="">
+           <img class="col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 col_youtube_img_card2" src="./assets/youtube_video2.png" alt="">
+       </div>
+     </section>
+     <div>
+       <button @click="prevCard" :disabled="currentIndex === 0">Prev</button>
+       <div class="card-carousel">
+         <div v-for="card in cards" :key="card.id" :class="{ active: index === currentIndex }">
+           <div class="card">
+             <!-- Render card content here -->
+             <h3>{{ card.title }}</h3>
+             <p>{{ card.price }}</p>
+           </div>
+         </div>
+       </div>
+       <button @click="nextCard" :disabled="currentIndex === cards.length - 1">Next</button>
+     </div>
    </main>
  </div>
 </template>
@@ -509,5 +567,88 @@ margin-left: 100px ;
   padding:5px 16px 5px 16px;
   text-decoration: none;
 }
+
+.section_5{
+  margin-top: 100px;
+}
+
+.section5_card1{
+  display: flex;
+  width: 459.984px;
+  height: 459.984px;
+  padding: 197.641px 109.984px 193.344px 109px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+  background-image: url("./assets/section5_img1.png");
+  background-repeat: no-repeat;
+}
+
+.section5_card2{
+  display: flex;
+  width: 459.984px;
+  height: 459.984px;
+  padding: 197.641px 109.984px 193.344px 109px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+  background-image: url("./assets/section5_img2.png");
+  background-repeat: no-repeat;
+}
+
+.section5_card3{
+  display: flex;
+  width: 459.984px;
+  height: 459.984px;
+  padding: 197.641px 109.984px 193.344px 109px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  flex-shrink: 0;
+  background-image: url("./assets/section5_img3.png");
+  background-repeat: no-repeat;
+}
+
+.section_5p{
+  color: #FFF;
+  text-align: center;
+  font-family: 'Roboto',sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 120% */
+}
+
+.section_5link{
+  color: #FFF;
+  text-align: center;
+  font-family: 'Roboto',sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23.438px; /* 130.208% */
+  text-decoration: none;
+}
+
+.section_6{
+  margin-top: 100px ;
+}
+
+.col_youtube_img_card1{
+  width: 540px;
+  height: 304px;
+  margin-left: 150px;
+}
+
+.col_youtube_img_card2{
+  width: 540px;
+  height: 304px;
+}
+
 </style>
 
